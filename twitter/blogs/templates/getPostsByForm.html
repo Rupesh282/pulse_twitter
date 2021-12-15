@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>get posts by Forms </title>
+</head>
+<body>
+    <h2>get posts by date : </h2> 
+    <form action="{% url 'getPostsFromDates' %}" method="GET">
+        <input type="date" name="from_date" required>
+        <input type="date" name="to_date" required>
+        <input type="submit" name="submit">
+    </form>
+
+    <h2> get posts by tags </h2>
+    <form action="{% url 'getPostsFromTags' %}" method="GET">
+        <input placeholder="type multiple tags" type="text" name='tags' required>
+        <input type="submit" name='submit'>
+    </form>
+
+    <h2> get posts by text </h2>
+        <form action="{% url 'getPostsFromText' %}" method="GET">
+            <input placeholder="type text for search" type="text" name='text_data' required>
+            <input type="submit" name='submit'>
+        </form>
+
+
+    <hr>
+    Posts :  
+
+    <ul>
+    {% for post in posts %}
+        <li> id : {{ post.id }} </li>
+        <li> Date : {{ post.published_date }} </li>
+        <li> text : {{ post.text_data }} </li>
+        <br>
+    {% endfor %}
+</body>
+</html>
